@@ -1,20 +1,26 @@
 import styled from 'styled-components';
 
+import PlayArrow from "../assets/img/seta_play.png"
+
 export default function QuestionList() {
 
     return (
         <>
         <ClosedQuestion>
             <p>Pergunta 1</p>
+            <img src={PlayArrow} alt="play"></img>
         </ClosedQuestion>
         <ClosedQuestion>
             <p>Pergunta 2</p>
+            <img src={PlayArrow} alt="play"></img>
         </ClosedQuestion>
         <ClosedQuestion>
             <p>Pergunta 3</p>
+            <img src={PlayArrow} alt="play"></img>
         </ClosedQuestion>
         <ClosedQuestion>
             <p>Pergunta 4</p>
+            <img src={PlayArrow} alt="play"></img>
         </ClosedQuestion>
         </>
     );
