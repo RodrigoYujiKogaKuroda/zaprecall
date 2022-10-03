@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import GlobalStyle from '../theme/globalStyle';
 
@@ -8,20 +8,39 @@ import CARDS from "./Cards";
 
 export default function App() {
 
+    const [color, setColor] = useState([]);
     const [isEnabled, setIsEnabled] = useState([]);
+    const [isAnswered, setIsAnswered] = useState([]);
     const [buttonIsDisabled, setButtonIsDisabled] = useState(false);
     const [turnButtonIsDisabled, setTurnButtonIsDisabled] = useState(false);
     const [answerButtonIsDisabled, setAnswerButtonIsDisabled] = useState(true);
     
     const numberOfQuestions = CARDS.length;
-    let color = "#333333";
+
+    useEffect(() => {
+        const colorArray = [];
+        const enabledArray = [];
+        const answeredArray = [];
+        for (let i = 0; i < CARDS.length; i++) {
+            color.push("#333333");
+            enabledArray.push(true);
+            answeredArray.push(false);
+        }
+        setColor(colorArray);
+        setIsEnabled(enabledArray);
+        setIsAnswered(answeredArray);
+    }, []);
 
     function markAnswer(backgroundColor, questionsAnswered, setQuestionsAnswered) {
-        color = backgroundColor;
+        const colorArray = color;
         const enabledArray = [];
         for (let i = 0; i < CARDS.length; i++) {
+            if (isEnabled[i] === false && color[i] !== "#333333") {
+                colorArray[i] = backgroundColor;
+            }
             enabledArray.push(true);
         }
+        setColor(colorArray);
         setIsEnabled(enabledArray);
         setQuestionsAnswered(questionsAnswered + 1);
         setButtonIsDisabled(false);
@@ -33,14 +52,16 @@ export default function App() {
         <>
             <GlobalStyle />
             <MainMenu
+                color={color}
                 isEnabled={isEnabled}
                 setIsEnabled={setIsEnabled}
+                isAnswered={isAnswered}
+                setIsAnswered={setIsAnswered}
                 buttonIsDisabled={buttonIsDisabled}
                 setButtonIsDisabled={setButtonIsDisabled}
                 turnButtonIsDisabled={turnButtonIsDisabled}
                 setTurnButtonIsDisabled={setTurnButtonIsDisabled}
                 setAnswerButtonIsDisabled={setAnswerButtonIsDisabled}
-                color={color}
             />
             <Footer
                 numberOfQuestions={numberOfQuestions}

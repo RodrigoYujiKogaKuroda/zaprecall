@@ -4,14 +4,16 @@ import Logo from "../assets/img/logo.png"
 import QuestionList from './QuestionList';
 
 export default function MainMenu({
+    color,
     isEnabled,
     setIsEnabled,
+    isAnswered,
+    setIsAnswered,
     buttonIsDisabled,
     setButtonIsDisabled,
     turnButtonIsDisabled,
     setTurnButtonIsDisabled,
-    setAnswerButtonIsDisabled,
-    color
+    setAnswerButtonIsDisabled
 }) {
 
     return (
@@ -22,14 +24,16 @@ export default function MainMenu({
                 <h1>ZapRecall</h1>
             </LogoContainer>
             <QuestionList
+                color={color}
                 isEnabled={isEnabled}
                 setIsEnabled={setIsEnabled}
+                isAnswered={isAnswered}
+                setIsAnswered={setIsAnswered}
                 buttonIsDisabled={buttonIsDisabled}
                 setButtonIsDisabled={setButtonIsDisabled}
                 turnButtonIsDisabled={turnButtonIsDisabled}
                 setTurnButtonIsDisabled={setTurnButtonIsDisabled}
                 setAnswerButtonIsDisabled={setAnswerButtonIsDisabled}
-                color={color}
             />
         </ScreenContainer>
         </>
