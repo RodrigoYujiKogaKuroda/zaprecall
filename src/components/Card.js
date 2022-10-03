@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import PlayArrow from "../assets/img/seta_play.png";
 import TurnArrow from "../assets/img/seta_virar.png";
 
-export default function Card({isEnabled, buttonIsDisabled, cardNumber, question, answer, turnToQuestion, turnToAnswer}) {
+export default function Card({isEnabled, buttonIsDisabled, turnButtonIsDisabled, cardNumber, question, answer, turnToQuestion, turnToAnswer}) {
 
+    const [cardText, setCardText] = useState(question);
     const QuestionNumber = cardNumber + 1;
 
     return (
@@ -17,8 +18,8 @@ export default function Card({isEnabled, buttonIsDisabled, cardNumber, question,
                 </button>
             </ClosedQuestion>
             <OpenedQuestion isEnabled={!isEnabled}>
-                <p>{question}</p>
-                <button onClick={() => {turnToAnswer(cardNumber)}} disabled={!buttonIsDisabled}>
+                <p>{cardText}</p>
+                <button onClick={() => {turnToAnswer(setCardText, answer)}} disabled={turnButtonIsDisabled}>
                     <img src={TurnArrow} alt="turn"></img>
                 </button>
             </OpenedQuestion>

@@ -7,6 +7,7 @@ export default function QuestionList() {
 
     const [isEnabled, setIsEnabled] = useState([]);
     const [buttonIsDisabled, setButtonIsDisabled] = useState(false);
+    const [turnButtonIsDisabled, setTurnButtonIsDisabled] = useState(false);
 
     useEffect(() => {
         const enabledArray = [];
@@ -27,8 +28,9 @@ export default function QuestionList() {
         setIsEnabled(newIsEnabled);
     }
 
-    function turnToAnswer(index) {
-
+    function turnToAnswer(setCardText, answer) {
+        setCardText(answer);
+        setTurnButtonIsDisabled(true);
     }
 
     return (
@@ -38,6 +40,7 @@ export default function QuestionList() {
                 key={index}
                 isEnabled={isEnabled[index]}
                 buttonIsDisabled={buttonIsDisabled}
+                turnButtonIsDisabled={turnButtonIsDisabled}
                 cardNumber={index}
                 question={card.question}
                 answer={card.answer}
