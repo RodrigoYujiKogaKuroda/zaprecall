@@ -42,6 +42,7 @@ export default function QuestionList({
         {CARDS.map((card, index) =>
             <Card
                 key={index}
+                data-identifier="flashcard"
                 cardNumber={index}
                 color={color[index]}
                 cardImage={cardImage[index]}

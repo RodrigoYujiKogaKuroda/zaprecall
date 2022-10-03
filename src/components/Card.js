@@ -23,14 +23,22 @@ export default function Card({
     return (
         <>
             <ClosedQuestion color={color} isEnabled={isEnabled} isAnswered={isAnswered}>
-                <p>Pergunta {QuestionNumber}</p>
-                <button onClick={() => {turnToQuestion(cardNumber)}} disabled={buttonIsDisabled}>
-                    <img src={cardImage} alt="img"></img>
+                <p data-identifier="flashcard-index-item">Pergunta {QuestionNumber}</p>
+                <button
+                    onClick={() => {turnToQuestion(cardNumber)}}
+                    disabled={buttonIsDisabled}
+                    data-identifier="flashcard-show-btn"
+                >
+                    <img src={cardImage} alt="img" data-identifier="flashcard-status"></img>
                 </button>
             </ClosedQuestion>
             <OpenedQuestion isEnabled={!isEnabled}>
-                <p>{cardText}</p>
-                <button onClick={() => {turnToAnswer(setCardText, answer)}} disabled={turnButtonIsDisabled}>
+                <p data-identifier="flashcard-question flashcard-answer">{cardText}</p>
+                <button
+                    onClick={() => {turnToAnswer(setCardText, answer)}}
+                    disabled={turnButtonIsDisabled}
+                    data-identifier="flashcard-turn-btn"
+                >
                     <img src={TurnArrow} alt="turn"></img>
                 </button>
             </OpenedQuestion>

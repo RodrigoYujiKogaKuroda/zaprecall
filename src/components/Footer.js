@@ -13,6 +13,7 @@ export default function Footer({numberOfQuestions, markAnswer, answerButtonIsDis
                     onClick={() => (markAnswer("#FF3030", questionsAnswered, setQuestionsAnswered))}
                     backgroundColor="#FF3030"
                     disabled={answerButtonIsDisabled}
+                    data-identifier="forgot-btn"
                 >
                     Não lembrei
                 </RememberButton>
@@ -20,6 +21,7 @@ export default function Footer({numberOfQuestions, markAnswer, answerButtonIsDis
                     onClick={() => (markAnswer("#FF922E", questionsAnswered, setQuestionsAnswered))}
                     backgroundColor="#FF922E"
                     disabled={answerButtonIsDisabled}
+                    data-identifier="almost-forgot-btn"
                 >
                     Quase não lembrei
                 </RememberButton>
@@ -27,11 +29,14 @@ export default function Footer({numberOfQuestions, markAnswer, answerButtonIsDis
                     onClick={() => (markAnswer("#2FBE34", questionsAnswered, setQuestionsAnswered))}
                     backgroundColor="#2FBE34"
                     disabled={answerButtonIsDisabled}
+                    data-identifier="zap-btn"
                 >
                     Zap!
                 </RememberButton>
             </ButtonContainer>
-            {questionsAnswered}/{numberOfQuestions} concluídos
+            <p data-identifier="flashcard-counter">
+                {questionsAnswered}/{numberOfQuestions} concluídos
+            </p>
         </PageFooter>
         </>
     );
