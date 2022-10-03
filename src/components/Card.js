@@ -4,16 +4,24 @@ import styled from 'styled-components';
 import PlayArrow from "../assets/img/seta_play.png";
 import TurnArrow from "../assets/img/seta_virar.png";
 
-export default function Card({isEnabled, cardNumber, question, answer, turnToQuestion, turnToAnswer}) {
+export default function Card({isEnabled, buttonIsDisabled, cardNumber, question, answer, turnToQuestion, turnToAnswer}) {
 
     const QuestionNumber = cardNumber + 1;
 
     return (
         <>
-            <ClosedQuestion isEnabled={!isEnabled}>
+            <ClosedQuestion isEnabled={isEnabled}>
                 <p>Pergunta {QuestionNumber}</p>
-                <img src={PlayArrow} alt="play" onClick={() => {turnToQuestion(cardNumber)}}></img>
+                <button onClick={() => {turnToQuestion(cardNumber)}} disabled={buttonIsDisabled}>
+                    <img src={PlayArrow} alt="play"></img>
+                </button>
             </ClosedQuestion>
+            <OpenedQuestion isEnabled={!isEnabled}>
+                <p>{question}</p>
+                <button onClick={() => {turnToAnswer(cardNumber)}} disabled={!buttonIsDisabled}>
+                    <img src={TurnArrow} alt="turn"></img>
+                </button>
+            </OpenedQuestion>
         </>
     );
 }
@@ -37,6 +45,19 @@ const ClosedQuestion = styled.div`
         font-size: 16px;
         line-height: 19px;
         color: #333333;
+    }
+
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    button:disabled {
+        cursor: default;
     }
 `
 
@@ -63,5 +84,19 @@ const OpenedQuestion = styled.div`
         position: absolute;
         bottom: 10px;
         right: 10px;
+    }
+
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    button:disabled {
+        visibility: hidden;
+        cursor: default;
     }
 `

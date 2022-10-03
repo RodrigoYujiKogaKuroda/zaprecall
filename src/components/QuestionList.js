@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import CARDS from "./Cards";
 import Card from "./Card";
@@ -6,9 +6,25 @@ import Card from "./Card";
 export default function QuestionList() {
 
     const [isEnabled, setIsEnabled] = useState([]);
+    const [buttonIsDisabled, setButtonIsDisabled] = useState(false);
 
+    useEffect(() => {
+        const enabledArray = [];
+        for (let i = 0; i < CARDS.length; i++) {
+            enabledArray.push(true);
+        }
+        setIsEnabled(enabledArray);
+    }, []);
+    
     function turnToQuestion(index) {
-
+        setButtonIsDisabled(true);
+        const newIsEnabled = isEnabled;
+        for (let i = 0; i < isEnabled.length; i++) {
+            if (i === index) {
+                newIsEnabled[i] = false;
+            }
+        }
+        setIsEnabled(newIsEnabled);
     }
 
     function turnToAnswer(index) {
@@ -21,6 +37,7 @@ export default function QuestionList() {
             <Card
                 key={index}
                 isEnabled={isEnabled[index]}
+                buttonIsDisabled={buttonIsDisabled}
                 cardNumber={index}
                 question={card.question}
                 answer={card.answer}
