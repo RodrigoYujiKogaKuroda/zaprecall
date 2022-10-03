@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import CARDS from "./Cards";
 import Card from "./Card";
 
-export default function QuestionList() {
+export default function QuestionList({color, setAnswerButtonIsDisabled}) {
 
     const [isEnabled, setIsEnabled] = useState([]);
     const [buttonIsDisabled, setButtonIsDisabled] = useState(false);
@@ -31,6 +31,7 @@ export default function QuestionList() {
     function turnToAnswer(setCardText, answer) {
         setCardText(answer);
         setTurnButtonIsDisabled(true);
+        setAnswerButtonIsDisabled(false);
     }
 
     return (

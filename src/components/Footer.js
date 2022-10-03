@@ -1,16 +1,37 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
-export default function Footer() {
+export default function Footer({numberOfQuestions, markAnswer, answerButtonIsDisabled}) {
+
+    const [questionsAnswered, setQuestionsAnswered] = useState(0);
 
     return (
         <>
         <PageFooter>
             <ButtonContainer>
-                <RememberButton backgroundColor="#FF3030">Não lembrei</RememberButton>
-                <RememberButton backgroundColor="#FF922E">Quase não lembrei</RememberButton>
-                <RememberButton backgroundColor="#2FBE34">Zap!</RememberButton>
+                <RememberButton
+                    onClick={() => (markAnswer("#FF3030", questionsAnswered, setQuestionsAnswered))}
+                    backgroundColor="#FF3030"
+                    disabled={answerButtonIsDisabled}
+                >
+                    Não lembrei
+                </RememberButton>
+                <RememberButton
+                    onClick={() => (markAnswer("#FF922E", questionsAnswered, setQuestionsAnswered))}
+                    backgroundColor="#FF922E"
+                    disabled={answerButtonIsDisabled}
+                >
+                    Quase não lembrei
+                </RememberButton>
+                <RememberButton
+                    onClick={() => (markAnswer("#2FBE34", questionsAnswered, setQuestionsAnswered))}
+                    backgroundColor="#2FBE34"
+                    disabled={answerButtonIsDisabled}
+                >
+                    Zap!
+                </RememberButton>
             </ButtonContainer>
-            0/8 concluídos
+            {questionsAnswered}/{numberOfQuestions} concluídos
         </PageFooter>
         </>
     );
@@ -56,4 +77,9 @@ const RememberButton = styled.button`
     border-radius: 5px;
     border: 1px solid ${props => props.backgroundColor};
     padding:5px;
+    cursor: pointer;
+
+    :disabled{
+        cursor: default;
+    }
 `

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Logo from "../assets/img/logo.png"
 import QuestionList from './QuestionList';
 
-export default function MainMenu() {
+export default function MainMenu({color, setAnswerButtonIsDisabled}) {
 
     return (
         <>
@@ -12,7 +12,10 @@ export default function MainMenu() {
                 <img src={Logo} alt="Logo" />
                 <h1>ZapRecall</h1>
             </LogoContainer>
-            <QuestionList />
+            <QuestionList
+                color={color}
+                setAnswerButtonIsDisabled={setAnswerButtonIsDisabled}
+            />
         </ScreenContainer>
         </>
     );
