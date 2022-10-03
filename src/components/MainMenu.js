@@ -3,7 +3,16 @@ import styled from 'styled-components';
 import Logo from "../assets/img/logo.png"
 import QuestionList from './QuestionList';
 
-export default function MainMenu({color, setAnswerButtonIsDisabled}) {
+export default function MainMenu({
+    isEnabled,
+    setIsEnabled,
+    buttonIsDisabled,
+    setButtonIsDisabled,
+    turnButtonIsDisabled,
+    setTurnButtonIsDisabled,
+    setAnswerButtonIsDisabled,
+    color
+}) {
 
     return (
         <>
@@ -13,8 +22,14 @@ export default function MainMenu({color, setAnswerButtonIsDisabled}) {
                 <h1>ZapRecall</h1>
             </LogoContainer>
             <QuestionList
-                color={color}
+                isEnabled={isEnabled}
+                setIsEnabled={setIsEnabled}
+                buttonIsDisabled={buttonIsDisabled}
+                setButtonIsDisabled={setButtonIsDisabled}
+                turnButtonIsDisabled={turnButtonIsDisabled}
+                setTurnButtonIsDisabled={setTurnButtonIsDisabled}
                 setAnswerButtonIsDisabled={setAnswerButtonIsDisabled}
+                color={color}
             />
         </ScreenContainer>
         </>

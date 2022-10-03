@@ -4,14 +4,25 @@ import styled from 'styled-components';
 import PlayArrow from "../assets/img/seta_play.png";
 import TurnArrow from "../assets/img/seta_virar.png";
 
-export default function Card({isEnabled, buttonIsDisabled, turnButtonIsDisabled, cardNumber, question, answer, turnToQuestion, turnToAnswer}) {
+export default function Card({
+    isEnabled,
+    isAnswered,
+    buttonIsDisabled,
+    turnButtonIsDisabled,
+    color,
+    cardNumber,
+    question,
+    answer,
+    turnToQuestion,
+    turnToAnswer
+}) {
 
     const [cardText, setCardText] = useState(question);
     const QuestionNumber = cardNumber + 1;
 
     return (
         <>
-            <ClosedQuestion isEnabled={isEnabled}>
+            <ClosedQuestion color={color} isEnabled={isEnabled} isAnswered={isAnswered}>
                 <p>Pergunta {QuestionNumber}</p>
                 <button onClick={() => {turnToQuestion(cardNumber)}} disabled={buttonIsDisabled}>
                     <img src={PlayArrow} alt="play"></img>
@@ -45,7 +56,8 @@ const ClosedQuestion = styled.div`
         font-weight: 700;
         font-size: 16px;
         line-height: 19px;
-        color: #333333;
+        text-decoration: ${props => props.isAnswered ? "line-through" : "none"};
+        color: ${props => props.color};
     }
 
     button {
