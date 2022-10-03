@@ -5,6 +5,7 @@ import QuestionList from './QuestionList';
 
 export default function MainMenu({
     color,
+    cardImage,
     isEnabled,
     setIsEnabled,
     isAnswered,
@@ -25,6 +26,7 @@ export default function MainMenu({
             </LogoContainer>
             <QuestionList
                 color={color}
+                cardImage={cardImage}
                 isEnabled={isEnabled}
                 setIsEnabled={setIsEnabled}
                 isAnswered={isAnswered}

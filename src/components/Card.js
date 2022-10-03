@@ -1,20 +1,20 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import PlayArrow from "../assets/img/seta_play.png";
 import TurnArrow from "../assets/img/seta_virar.png";
 
 export default function Card({
+    cardNumber,
+    color,
+    cardImage,
     isEnabled,
     isAnswered,
     buttonIsDisabled,
     turnButtonIsDisabled,
-    color,
-    cardNumber,
     question,
     answer,
     turnToQuestion,
-    turnToAnswer
+    turnToAnswer,
 }) {
 
     const [cardText, setCardText] = useState(question);
@@ -25,7 +25,7 @@ export default function Card({
             <ClosedQuestion color={color} isEnabled={isEnabled} isAnswered={isAnswered}>
                 <p>Pergunta {QuestionNumber}</p>
                 <button onClick={() => {turnToQuestion(cardNumber)}} disabled={buttonIsDisabled}>
-                    <img src={PlayArrow} alt="play"></img>
+                    <img src={cardImage} alt="img"></img>
                 </button>
             </ClosedQuestion>
             <OpenedQuestion isEnabled={!isEnabled}>

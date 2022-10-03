@@ -3,6 +3,7 @@ import Card from "./Card";
 
 export default function QuestionList({
     color,
+    cardImage,
     isEnabled,
     setIsEnabled,
     isAnswered,
@@ -15,15 +16,17 @@ export default function QuestionList({
 }) {
  
     function turnToQuestion(index) {
-        setButtonIsDisabled(true);
+        const disabledButtons = [];
         const newIsEnabled = isEnabled;
         const newIsAnswered = isAnswered;
         for (let i = 0; i < isEnabled.length; i++) {
+            disabledButtons[i] = true;
             if (i === index) {
                 newIsEnabled[i] = false;
                 newIsAnswered[i] = true;
             }
         }
+        setButtonIsDisabled(disabledButtons);
         setIsEnabled(newIsEnabled);
         setIsAnswered(newIsAnswered);
     }
@@ -39,12 +42,13 @@ export default function QuestionList({
         {CARDS.map((card, index) =>
             <Card
                 key={index}
+                cardNumber={index}
+                color={color[index]}
+                cardImage={cardImage[index]}
                 isEnabled={isEnabled[index]}
                 isAnswered={isAnswered[index]}
-                buttonIsDisabled={buttonIsDisabled}
+                buttonIsDisabled={buttonIsDisabled[index]}
                 turnButtonIsDisabled={turnButtonIsDisabled}
-                color={color[index]}
-                cardNumber={index}
                 question={card.question}
                 answer={card.answer}
                 turnToQuestion={turnToQuestion}
